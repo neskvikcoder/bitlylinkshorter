@@ -1,0 +1,4 @@
+TgCrypto
+Pyrogram
+requests
+python-dotenv

@@ -1,0 +1,25 @@
+{
+	"name": "Bitly Link Shortener",
+	"description": "Bot can Generate Bitly short l8nk ",
+	"repository": "https://github.com/lntechnical2/BitlyBot",
+	"keywords": ["Bitly", "pyrogram", "telegram bot"],
+	"env": {
+		"TOKEN": {
+			"description": "8094911162:AAFFJLXOf225YiiusmAGTEA4d9jd3y6VFXk"
+		},
+		"API_ID": {
+			"description": "11218948"
+		},
+		"API_HASH": {
+			"description": "e85ef46ef57a9ffc0cb82464c160b905"
+		},
+		"BITLY_TOKEN": {
+			"description": "a01ccbb5ccb06839f9730a4ef7fec2fcb53bbfaa"
+		}
+	},
+	"buildpacks": [
+		{
+			"url": "heroku/python"
+		}
+	]
+}
