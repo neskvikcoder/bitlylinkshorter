@@ -13,12 +13,6 @@ API_ID = int(os.getenv("API_ID", 12345))
 API_HASH = os.getenv("API_HASH")
 BITLY_TOKEN = os.getenv("BITLY_TOKEN")
 
-# Отладочные сообщения
-print(f"TOKEN: {TOKEN}")
-print(f"API_ID: {API_ID}")
-print(f"API_HASH: {API_HASH}")
-print(f"BITLY_TOKEN: {BITLY_TOKEN}")
-
 # Заголовки для запросов к Bitly
 headers = {
     'Authorization': f'Bearer {BITLY_TOKEN}',
@@ -33,8 +27,9 @@ app = Client("bitlybot", bot_token=TOKEN, api_id=API_ID, api_hash=API_HASH)
 async def start(client, message):
     await message.reply_text(
         f"Hello {message.from_user.first_name}\n"
-        "I am a Bitly link shortener bot."
-        reply_to_message_id=message.id
+        "I am a Bitly link shortener bot.\n"
+        "Made with love by @mrlokaman",
+        reply_to_message_id=message.id  # Исправлено: message.id вместо message.message_id
     )
 
 # Обработчик для сокращения ссылок
@@ -59,12 +54,10 @@ async def Bitly(client, message):
 
         if r.status_code == 200 and "link" in result:
             link = result["link"]
-            if link and isinstance(link, str):  # Проверка, что link не пустой и является строкой
-                # Убедимся, что ссылка в правильной кодировке
-                link = link.encode('utf-8').decode('utf-8')
+            if link:  # Проверка, что ссылка не пустая
                 await message.reply_text(link, reply_to_message_id=message.id)
             else:
-                await message.reply_text("Error: The shortened link is empty or invalid.", reply_to_message_id=message.id)
+                await message.reply_text("Error: The shortened link is empty.", reply_to_message_id=message.id)
         else:
             error_message = result.get("message", "Unknown error from Bitly.")
             await message.reply_text(f"Bitly Error: {error_message}", reply_to_message_id=message.id)
