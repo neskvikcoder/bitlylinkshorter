@@ -29,7 +29,7 @@ async def start(client, message):
         f"Hello {message.from_user.first_name}\n"
         "I am a Bitly link shortener bot.\n"
         "Made with love by @mrlokaman",
-        reply_to_message_id=message.id  # Исправлено: message.id вместо message.message_id
+        reply_to_message_id=message.id
     )
 
 # Обработчик для сокращения ссылок
@@ -38,8 +38,8 @@ async def Bitly(client, message):
     URL = message.text
     print(f"Received URL: {URL}")  # Отладочное сообщение
 
-    if not URL:
-        await message.reply_text("Error: The URL is empty.", reply_to_message_id=message.id)
+    if not URL.startswith(("http://", "https://")):
+        await message.reply_text("Error: Invalid URL. It must start with http:// or https://.", reply_to_message_id=message.id)
         return
 
     DOMAIN = "bit.ly"
@@ -50,6 +50,7 @@ async def Bitly(client, message):
     try:
         r = requests.post('https://api-ssl.bitly.com/v4/shorten', headers=headers, data=data)
         result = r.json()
+        print(f"Bitly response status code: {r.status_code}")  # Отладочное сообщение
         print(f"Bitly response: {result}")  # Отладочное сообщение
 
         if r.status_code == 200 and "link" in result:
