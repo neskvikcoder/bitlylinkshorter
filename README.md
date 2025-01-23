@@ -4,13 +4,13 @@ Bitly Short link generator Bot
 
 ## Configs
 
-- TOKEN - 8094911162:AAFFJLXOf225YiiusmAGTEA4d9jd3y6VFXk
+- TOKEN - 
 
-- API_ID - 11218948
+- API_ID - 
 
-- API_HASH - e85ef46ef57a9ffc0cb82464c160b905
+- API_HASH - 
 
-- BITLY_TOKEN - a01ccbb5ccb06839f9730a4ef7fec2fcb53bbfaa
+- BITLY_TOKEN - 
 
 ## Deploy
 
